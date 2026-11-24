@@ -202,12 +202,11 @@ the coordinate pairs determining this grid.::
 ---------
 
 ``numpy.mgrid`` can be used as a shortcut for creating meshgrids. It is not a
-function, but when indexed, returns a multidimensional meshgrid.
+function, but when indexed, returns a multidimensional meshgrid. Its axis
+order matches ``meshgrid`` with ``indexing="ij"``::
 
-::
-
-  >>> xx, yy = np.meshgrid(np.array([0, 1, 2, 3]), np.array([0, 1, 2, 3, 4, 5]))
-  >>> xx.T, yy.T
+  >>> xx, yy = np.meshgrid(np.arange(4), np.arange(6), indexing="ij")
+  >>> xx, yy
   (array([[0, 0, 0, 0, 0, 0],
           [1, 1, 1, 1, 1, 1],
           [2, 2, 2, 2, 2, 2],
@@ -237,7 +236,7 @@ meshgrid. This means that when it is indexed, only one dimension of each
 returned array is greater than 1. This avoids repeating the data and thus saves
 memory, which is often desirable.
 
-These sparse coordinate grids are intended to be used with :ref:`broadcasting`.
+These sparse coordinate grids are intended to be used with :ref:`broadcasting <basics.broadcasting>`.
 When all coordinates are used in an expression, broadcasting still leads to a
 fully-dimensional result array.
 
